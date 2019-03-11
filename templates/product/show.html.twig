@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article>
+        <h2>{{ produit.title }}</h2>
+
+        <a href="{{ path('edit', {'id': produit.id}) }}" class="btn btn-primary">Modifier le produit</a>
+
+        <p class="metadata">
+            Ecrit le {{ produit.createdAt | date('d/m/Y') }} à {{ produit.createdAt | date('H:i') }} dans la catégorie <i>{{ produit.categorie.title }}</i>
+        </p>
+
+        <img src="{{ produit.image }}" alt="">
+        
+        {{ produit.description | raw }}
+
+        <ul class="list-group">
+            <li class="list-group-item d-flex align-items-center bg-light">
+                <strong>Taille :</strong> 150 cm
+            </li>
+            <li class="list-group-item d-flex align-items-center">
+                <strong>Taille :</strong> 150 cm
+            </li>
+            <li class="list-group-item d-flex align-items-center bg-light">
+                <strong>Taille :</strong> 150 cm
+            </li>
+            <li class="list-group-item d-flex align-items-center">
+                <strong>Taille :</strong> 150 cm
+            </li>
+        </ul>
+    </article>
+
+    <section id="commentaires">
+        <h1>{{ produit.commentaires | length }} commentaires : </h1>
+        
+        {% for commentaire in produit.commentaires %}
+            <div class="commentaire">
+                <div class="row">
+                    <div class="col-3">
+                        {{ commentaire.auteur }} (<small>{{ commentaire.createdAt | date('d/m/Y à H:i') }}</small>)
+                    </div>
+                    <div class="col">
+                        {{ commentaire.content | raw }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if app.user %}
+            {{ form_start(commentForm) }}
+            {{ form_row(commentForm.auteur,  {'attr': {'placeholder': 'Votre nom'}}) }}
+            {{ form_row(commentForm.content, {'attr': {'placeholder': 'Votre commentaire'}}) }}
+
+            <button type="submit" class="btn btn-success">Commenter !</button>
+
+            {{ form_end(commentForm) }}
+        {% else %}
+            <h2>Vous ne pouvez pas commenter si vous n'êtes pas connecté</h2>
+            <a href="{{ path('security_login') }}" class="btn btn-primary">Connexion</a>
+        {% endif %}
+    </section>
+    
+{% endblock %}
