@@ -17,6 +17,21 @@ class Support
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $reference;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $quantite;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $couleur;
@@ -41,24 +56,45 @@ class Support
      */
     private $type;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $reference;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $description;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantite;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(int $quantite): self
+    {
+        $this->quantite = $quantite;
+
+        return $this;
     }
 
     public function getCouleur(): ?string
@@ -117,42 +153,6 @@ class Support
     public function setType(?string $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getQuantite(): ?int
-    {
-        return $this->quantite;
-    }
-
-    public function setQuantite(int $quantite): self
-    {
-        $this->quantite = $quantite;
 
         return $this;
     }
