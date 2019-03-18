@@ -5,16 +5,12 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use App\Entity\Produit;
-use App\Entity\Categorie;
-use App\Entity\Commentaire;
-
-class ProduitFixtures extends Fixture
+class ProfanFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        /*
         $faker = \Faker\Factory::create('fr_FR');
-
         for ($i = 1; $i < 4; $i++) 
         {
             $category = new Categorie();
@@ -56,38 +52,6 @@ class ProduitFixtures extends Fixture
         }
 
         $manager->flush();
+        */
     }
 }
-
-
-/*
-<?php
-
-namespace App\DataFixtures;
-
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
-
-use App\Entity\Produit;
-
-class AppFixtures extends Fixture
-{
-    public function load(ObjectManager $manager)
-    {
-        for ($i = 1; $i < 10; $i++) 
-        {
-            $product = new Produit();
-
-            $product->setTitle("Titre du produit n°$i")
-                    ->setDescription("<p>Contenu de l'article n°$i</p>")
-                    ->setImage("http://placehold.it/350x150")
-                    ->setCreatedAt(new \Datetime());
-
-            $manager->persist($product);
-        }
-
-        $manager->flush();
-    }
-}
-
-*/
