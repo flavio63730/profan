@@ -56,6 +56,11 @@ class Support
      */
     private $type;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,6 +158,18 @@ class Support
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
 
         return $this;
     }

@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SupportType extends AbstractType
@@ -18,7 +19,8 @@ class SupportType extends AbstractType
             ->add('reference', TextType::class, [
                 'required' => true,
             ])
-            ->add('description', TextType::class)
+            ->add('nom', TextType::class)
+            ->add('description', TextareaType::class)
             ->add('quantite', IntegerType::class, [
                 'required' => true,
             ])

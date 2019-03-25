@@ -1,36 +1,43 @@
-{{ form_start(support, {'method': 'POST', 'attr': {'class': 'form-horizontal'}}) }}
+{{ form_start(support, {'method': 'POST', 'attr': {'class': 'form-horizontal row'}}) }}
 
 <div class="box-body col-sm-6">
     <div class="form-group">
-        {{ form_label(support.desciption, null, {'label': 'support.desciption', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        {{ form_label(support.reference, null, {'label': 'Reference', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
         <div class="col-sm-9">
-            {{ form_widget(support.desciption, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(support.reference, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 
     <div class="form-group">
-        {{ form_label(support.quantite, null, {'label': 'support.quantite', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        {{ form_label(support.nom, null, {'label': 'Nom', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(support.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(support.quantite, null, {'label': 'Quantite', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
         <div class="col-sm-9">
             {{ form_widget(support.quantite, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 
     <div class="form-group">
-        {{ form_label(support.couleur, null, {'label': 'support.couleur', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        {{ form_label(support.couleur, null, {'label': 'Couleur', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
         <div class="col-sm-9">
             {{ form_widget(support.couleur, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
+</div>
 
+<div class="box-body col-sm-6">
     <div class="form-group">
         {{ form_label(support.format, null, {'label': 'Format', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
         <div class="col-sm-9">
             {{ form_widget(support.format, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
-</div>
 
-<div class="box-body col-sm-6">
     <div class="form-group">
         {{ form_label(support.grammage, null, {'label': 'Grammage', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
         <div class="col-sm-9">
@@ -49,6 +56,15 @@
         {{ form_label(support.type, null, {'label': 'Type', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
         <div class="col-sm-9">
             {{ form_widget(support.type, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="box-body col-sm-12">
+    <div class="form-group">
+        {{ form_label(support.description, null, {'label': 'Description', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-12">
+            {{ form_widget(support.description, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 </div>

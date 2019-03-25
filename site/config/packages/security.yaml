@@ -1,7 +1,8 @@
 security:
     encoders:
         App\Entity\User: 
-            algorithm: bcrypt
+            algorithm: argon2i
+
             
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -10,12 +11,17 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            anonymous: ~
 
             provider: in_database
 
@@ -25,7 +31,7 @@ security:
 
             logout:
                 path: security_logout
-                target: product
+                target: security_login
 
             # activate different ways to authenticate
 
@@ -38,5 +44,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

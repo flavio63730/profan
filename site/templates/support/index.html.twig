@@ -13,8 +13,7 @@
                 <thead>
                     <tr role="row">
                         <th>Article</th>
-                        <th>Designation</th>
-                        <th>Prenom</th>
+                        <th>Nom</th>
                         <th>Quantite</th>
                         <th>Couleur</th>
                         <th>Format</th>
@@ -28,18 +27,18 @@
                 {% for support in supports %}
                     <tr role="row">
                         <td>{{ support.id }}</td>
-                        <td>{{ support.desciption }}</td>
+                        <td>{{ support.nom }}</td>
                         <td>{{ support.quantite }}</td>
                         <td>{{ support.couleur }}</td>
                         <td>{{ support.format }}</td>
                         <td>{{ support.grammage }}</td>
                         <td>{{ support.materiel }}</td>
                         <td>{{ support.type }}</td>
-                        <td class="actions_form">
-                            <a href="{{ path('app_support_edit', { 'id': support.id}) }}" class="btn btn-default">
-                                <i class="fa fa-pencil"></i>
+                        <td class="actions_form row">
+                            <a href="{{ path('app_support_edit', { 'id': support.id}) }}" class="btn btn-primary">
+                                <i class="fa fa-pencil-alt"></i>
                             </a>
-                            {{ include('support/_delete_form.html.twig') }}
+                            {{ include('support/_delete.html.twig') }}
                         </td>
                     </tr>
                 {% endfor %}

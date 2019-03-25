@@ -10,7 +10,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+  * Require ROLE_ADMIN for *every* controller method in this class.
+  *
+  * @IsGranted("ROLE_USER")
+  */
 class SupportController extends AbstractController
 {
     /**
@@ -64,7 +70,7 @@ class SupportController extends AbstractController
      *
      * @return Response
      *
-     * @Route("/{id}/edit", name="app_support_edit")
+     * @Route("/support/{id}/edit", name="app_support_edit")
      * @Method({"GET", "POST"})
      */
     public function edit(Request $request, Support $support)
@@ -90,7 +96,7 @@ class SupportController extends AbstractController
      *
      * @return Response
      *
-     * @Route("/{id}", name="app_support_delete")
+     * @Route("/support/{id}", name="app_support_delete")
      * @Method({"DELETE"})
      */
     public function delete(Request $request, Support $support)
