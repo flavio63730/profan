@@ -12,10 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @Route("/user")
+ */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="app_user_index")
+     * @Route("/", name="app_user_index")
      */
     public function index(UserRepository $userRepository)
     {
@@ -25,7 +28,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/new", name="app_user_new")
+     * @Route("/new", name="app_user_new")
      */
     public function new(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {
@@ -40,7 +43,6 @@ class UserController extends AbstractController
             $hash = $encoder->encodePassword($user, $user->getPassword());
 
             $user->setPassword($hash);
-            $user->setRoles(array('ROLE_USER'));
 
             $manager->persist($user);
             $manager->flush();
@@ -49,7 +51,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/create.html.twig', [
-            'form' => $form->createView()
+            'user' => $form->createView()
         ]);
     }
 }

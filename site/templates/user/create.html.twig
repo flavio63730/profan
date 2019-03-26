@@ -4,16 +4,52 @@
 
     <h1>Ajouter une utilisateur</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(user) }}
 
-    {{ form_row(form.email, {'label': 'Adresse mail', 'attr': {'placeholder': 'Adresse mail...'}}) }}
-    {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Mot de passe...'}}) }}
-    {{ form_row(form.confirm_password, {'label': 'Confirmation de mot de passe', 'attr': {'placeholder': 'Répétez votre mot de passe'}}) }}
+    <div class="box-body col-sm-6">
+        <div class="form-group">
+            {{ form_label(user.email, null, {'label': 'Adresse mail', 'label_attr': {'class': 'col-sm-12'}}) }}
+            <div class="col-sm-12">
+                {{ form_widget(user.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse mail...'}}) }}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(user.roles, null, {'label': 'Adresse mail', 'label_attr': {'class': 'col-sm-12'}}) }}
+            <div class="col-sm-12">
+                {{ form_widget(user.roles, {'attr': {'class': 'form-control select', 'placeholder': 'Adresse mail...'}}) }}
+            </div>
+        </div>
+    </div>
+    <div class="box-body col-sm-6">        
+        <div class="form-group">
+            {{ form_label(user.password, null, {'label': 'Mot de passe', 'label_attr': {'class': 'col-sm-12'}}) }}
+            <div class="col-sm-12">
+                {{ form_widget(user.password, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe...'}}) }}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(user.confirm_password, null, {'label': 'Confirmation de mot de passe', 'label_attr': {'class': 'col-sm-12'}}) }}
+            <div class="col-sm-12">
+                {{ form_widget(user.confirm_password, {'attr': {'class': 'form-control', 'placeholder': 'Répétez votre mot de passe'}}) }}
+            </div>
+        </div>
+    </div>
 
     <button type="submit" class="btn btn-success">
         Créer l'utilisateur
     </button>
     
-    {{ form_end(form) }}
+    {{ form_end(user) }}
 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let selects = document.getElementsByClassName("select");
+        for (var i = 0; i < selects.length; i++) {
+            selects[i].removeAttribute("multiple");
+        }
+    </script>
 {% endblock %}

@@ -21,7 +21,7 @@ class ProfanFixtures extends Fixture
         $admin = new User();
         $admin->setEmail('admin@admin.fr');
         $admin->setPassword($this->encoder->encodePassword($admin, 'admin'));
-        $admin->setRoles(array('ROLE_ADMIN, ROLE_USER'));
+        $admin->setRoles(array('ROLE_ADMIN'));
         $manager->persist($admin);
     
         $manager->flush();
