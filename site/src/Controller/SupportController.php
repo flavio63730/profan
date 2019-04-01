@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+/**
+ * @Route("/support")
+ */
 class SupportController extends AbstractController
 {
     /**
@@ -20,7 +23,7 @@ class SupportController extends AbstractController
      *
      * @return Response
      *
-     * @Route("/support", name="app_support_index")
+     * @Route("/", name="app_support_index")
      * @Method({"GET"})
      */
     public function index(SupportRepository $supportRepository)
@@ -38,7 +41,7 @@ class SupportController extends AbstractController
      * @Route("/create", name="app_support_new")
      * @Method({"GET", "POST"})
      */
-    public function new(Request $request)
+    public function create(Request $request)
     {
         $form = $this->createForm(SupportType::class);
         $form->handleRequest($request);

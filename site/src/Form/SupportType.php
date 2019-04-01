@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SupportType extends AbstractType
 {
@@ -28,7 +29,12 @@ class SupportType extends AbstractType
             ->add('format', TextType::class)
             ->add('grammage', TextType::class)
             ->add('materiel', TextType::class)
-            ->add('type', TextType::class)
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'choix_1' =>  "choix_1",
+                    'choix_2' =>  "choix_2",
+                ],
+            ])
             ->add('submit', SubmitType::class);
     }
 
