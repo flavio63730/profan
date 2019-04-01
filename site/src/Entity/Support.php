@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -60,6 +62,16 @@ class Support
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Historique", mappedBy="support")
+     */
+    private $historiques;
+
+    public function __construct()
+    {
+        $this->historiques = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -170,6 +182,37 @@ class Support
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Historique[]
+     */
+    public function getHistoriques(): Collection
+    {
+        return $this->historiques;
+    }
+
+    public function addHistorique(Historique $historique): self
+    {
+        if (!$this->historiques->contains($historique)) {
+            $this->historiques[] = $historique;
+            $historique->setSupport($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistorique(Historique $historique): self
+    {
+        if ($this->historiques->contains($historique)) {
+            $this->historiques->removeElement($historique);
+            // set the owning side to null (unless already changed)
+            if ($historique->getSupport() === $this) {
+                $historique->setSupport(null);
+            }
+        }
 
         return $this;
     }

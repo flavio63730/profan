@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -43,6 +45,16 @@ class User implements UserInterface
      * @Assert\EqualTo(propertyPath="password", message="La confirmation est différente de votre mot de passe")
      */
     public $confirm_password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Historique", mappedBy="user", orphanRemoval=true)
+     */
+    private $historiques;
+
+    public function __construct()
+    {
+        $this->historiques = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -116,5 +128,36 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Historique[]
+     */
+    public function getHistoriques(): Collection
+    {
+        return $this->historiques;
+    }
+
+    public function addHistorique(Historique $historique): self
+    {
+        if (!$this->historiques->contains($historique)) {
+            $this->historiques[] = $historique;
+            $historique->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistorique(Historique $historique): self
+    {
+        if ($this->historiques->contains($historique)) {
+            $this->historiques->removeElement($historique);
+            // set the owning side to null (unless already changed)
+            if ($historique->getUser() === $this) {
+                $historique->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
