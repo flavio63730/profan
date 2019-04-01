@@ -28,30 +28,52 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_user_new")
+     * @Route("/create", name="app_user_create")
      */
-    public function new(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
+    public function create(Request $request, UserPasswordEncoderInterface $encoder)
     {
-        $user = new User();
-
-        $form = $this->createForm(RegistrationType::class, $user);
-
+        $form = $this->createForm(RegistrationType::class);
         $form->handleRequest($request);
 
-        if ( $form->isSubmitted() && $form->isValid() )
-        {
-            $hash = $encoder->encodePassword($user, $user->getPassword());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
 
-            $user->setPassword($hash);
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 
-            $manager->persist($user);
-            $manager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_user_index');
         }
 
-        return $this->render('user/create.html.twig', [
-            'user' => $form->createView()
+        return $this->render('user/edit.html.twig', [
+            'user' => $form->createView(),
+            'new' => true,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="app_user_edit")
+     */
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder, UserRepository $userRepository)
+    {
+        $form = $this->createForm(RegistrationType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('app_user_index');
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $form->createView(),
+            'new' => false,
+            'historiques' => $user->getHistoriques(),
         ]);
     }
 }

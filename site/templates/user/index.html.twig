@@ -6,7 +6,7 @@
     <div class="box">
         <div class="box-header">
             <h1 class="box-title">Liste des utilisateurs</h1>
-            <a href="{{ url('app_user_new') }}" class="btn btn-primary top-btn">Créer un utilisateur</a>
+            <a href="{{ url('app_user_create') }}" class="btn btn-primary top-btn">Créer un utilisateur</a>
         </div>
         <div class="box-body">
             <table class="table table-striped dataTable" role="grid">
@@ -29,10 +29,9 @@
                             {% endfor %}
                         </td>
                         <td class="actions_form row">
-                            {# <a href="{{ path('app_user_new', { 'id': user.id}) }}" class="btn btn-primary">
+                            <a href="{{ path('app_user_edit', { 'id': user.id}) }}" class="btn btn-primary">
                                 <i class="fa fa-pencil-alt"></i>
-                            </a> #}
-                            {# {{ include('support/_delete.html.twig') }} #}
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
