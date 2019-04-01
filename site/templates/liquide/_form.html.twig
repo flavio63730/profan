@@ -1,0 +1,69 @@
+{{ form_start(liquide, {'method': 'POST', 'attr': {'class': 'form-horizontal row'}}) }}
+
+<div class="box-body col-sm-6">
+    <div class="form-group">
+        {{ form_label(liquide.reference, null, {'label': 'Reference', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(liquide.reference, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(liquide.nom, null, {'label': 'Nom', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(liquide.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(liquide.quantite, null, {'label': 'Quantite', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(liquide.quantite, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(liquide.couleur, null, {'label': 'Couleur', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(liquide.couleur, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="box-body col-sm-6">
+    <div class="form-group">
+        {{ form_label(liquide.format, null, {'label': 'Format', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(liquide.format, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(liquide.type, null, {'label': 'Type', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(liquide.type, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="box-body col-sm-12">
+    <div class="form-group">
+        {{ form_label(liquide.description, null, {'label': 'Description', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-12">
+            {{ form_widget(liquide.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="box-footer">
+    <div class="row">
+        <div class="btn-box col-sm-4 col-sm-offset-4">
+            <a href="{{ url("app_liquide_index") }}" class="btn btn-default">{{ 'Annuler'|trans }}</a>
+        </div>
+        <div class="btn-box col-sm-4">
+            {{ form_widget(liquide.submit, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
+        </div>
+    </div>
+</div>
+
+{{ form_end(liquide) }}

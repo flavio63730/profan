@@ -1,20 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LiquideController!{% endblock %}
+{% block title %}liquides{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/jaelv/Documents/GitHub/profan/site/src/Controller/LiquideController.php'|file_link(0) }}">src/Controller/LiquideController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/jaelv/Documents/GitHub/profan/site/templates/liquide/index.html.twig'|file_link(0) }}">templates/liquide/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="box">
+        <div class="box-header">
+            <h1 class="box-title">Liste des liquides</h1>
+            <a href="{{ path('app_liquide_new') }}" class="btn btn-primary top-btn">Créer un liquide</a>
+        </div>
+        <div class="box-body">
+            <table class="table table-striped dataTable" role="grid">
+                <thead>
+                    <tr role="row">
+                        <th>Article</th>
+                        <th>Nom</th>
+                        <th>Quantite</th>
+                        <th>Couleur</th>
+                        <th>Format</th>
+                        <th>Type<th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for liquide in liquides %}
+                    <tr role="row">
+                        <td>{{ liquide.id }}</td>
+                        <td>{{ liquide.nom }}</td>
+                        <td>{{ liquide.quantite }}</td>
+                        <td>{{ liquide.couleur }}</td>
+                        <td>{{ liquide.format }}</td>
+                        <td>{{ liquide.type }}</td>
+                        <td class="actions_form row">
+                            <a href="{{ path('app_liquide_edit', { 'id': liquide.id}) }}" class="btn btn-primary">
+                                <i class="fa fa-pencil-alt"></i>
+                            </a>
+                            {{ include('liquide/_delete.html.twig') }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
