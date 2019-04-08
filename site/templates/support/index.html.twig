@@ -8,6 +8,9 @@
             <h1 class="box-title">Liste des supports</h1>
             <a href="{{ path('app_support_new') }}" class="btn btn-primary top-btn">Créer un support</a>
         </div>
+        
+        {{ include('support/_form_search.html.twig') }}
+
         <div class="box-body">
             <table class="table table-striped dataTable" role="grid">
                 <thead>
