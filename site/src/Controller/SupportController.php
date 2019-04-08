@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Support;
 use App\Form\SupportType;
+use App\Form\SupportSearch;
+use App\Form\SupportSearchType;
 use App\Repository\SupportRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -30,6 +32,35 @@ class SupportController extends AbstractController
      */
     public function index(SupportRepository $supportRepository, UserInterface $user)
     {
+        $supports = $supportRepository->findAll();
+
+        $form = $this->createForm(SupportSearchType::class);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData();
+
+            $values = [
+                'nom' => strtoupper($search->getNom()),
+                'quantite' => $search->getQuantite(),
+                'couleur' => strtoupper($search->getCouleur()),
+                'format' => strtoupper($search->getFormat()),
+                'grammage' => $search->getGrammage(),
+                'materiel' => strtoupper($search->getMateriel()),
+                'type' => strtoupper($search->getType()),
+            ];
+            for ($i=0; $i < sizeof($supports); ++$i ) {
+                if (   ($values['nom'] && strpos(strtoupper($supports[$i]->getNom()), $values['nom']) === false )
+                    || ($values['quantite'] && $supports[$i]->getQuantite() > $values['quantite'] === false)
+                    || ($values['couleur'] && strpos(strtoupper($supports[$i]->getCouleur()), $values['couleur']) === false)
+                    || ($values['format'] && strpos(strtoupper($supports[$i]->getFormat()), $values['format']) === false)
+                    || ($values['grammage'] && $supports[$i]->getGrammage() != $values['grammage'])
+                    || ($values['materiel'] && strpos(strtoupper($supports[$i]->getMateriel()), $values['materiel']) === false)
+                    || ($values['type'] && strpos(strtoupper($supports[$i]->getType()), $values['type']) === false) )
+                    unset($supports[$i]);
+            }
+        }
+
         return $this->render('support/index.html.twig', [
             'supports' => $supportRepository->findAll(),
             'isAdmin' => in_array('ROLE_ADMIN', $user->getRoles()),
