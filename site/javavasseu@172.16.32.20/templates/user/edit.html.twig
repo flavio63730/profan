@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Utilisateur</h1>
+
+    {{ form_start(user) }}
+
+    <div class="box-body col-sm-6">
+        <div class="form-group">
+            {{ form_label(user.email, null, {'label': 'Adresse mail', 'label_attr': {'class': 'col-sm-12'}}) }}
+            <div class="col-sm-12">
+                {{ form_widget(user.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse mail...'}}) }}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(user.roles, null, {'label': 'Roles', 'label_attr': {'class': 'col-sm-12'}}) }}
+            <div class="col-sm-12">
+                {{ form_widget(user.roles, {'attr': {'class': 'form-control select', 'placeholder': 'Adresse mail...'}}) }}
+            </div>
+        </div>
+    </div>
+    <div class="box-body col-sm-6">
+        <div class="form-group">
+            {{ form_label(user.password, null, {'label': 'Mot de passe', 'label_attr': {'class': 'col-sm-12'}}) }}
+            <div class="col-sm-12">
+                {{ form_widget(user.password, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe...'}}) }}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(user.confirm_password, null, {'label': 'Confirmation de mot de passe', 'label_attr': {'class': 'col-sm-12'}}) }}
+            <div class="col-sm-12">
+                {{ form_widget(user.confirm_password, {'attr': {'class': 'form-control', 'placeholder': 'Répétez votre mot de passe'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        {% if new %}
+            Créer l'utilisateur
+        {% else %}
+            Enregistrer les modifications
+        {% endif %}
+    </button>
+
+    {{ form_widget(user._token) }}
+    {{ form_end(user, {'render_rest': false}) }}
+
+    {% if not new %}
+        <div class="box">
+            <div class="box-header">
+                <h2 class="box-title">Historique</h2>
+            </div>
+            <div class="box-body">
+                <table class="table table-striped dataTable" role="grid">
+                    <thead>
+                    <tr role="row">
+                        <th>Date</th>
+                        <th>Utilisateur</th>
+                        <th>Article</th>
+                        <th>Action</th>
+                        <th>Quantité</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for historique in historiques %}
+                        <tr role="row">
+                            <td>{{ historique.date }}</td>
+                            <td>{{ historique.utilisateur }}</td>
+                            <td>{{ historique.support.id }}</td>
+                            <td>{{ historique.action }}</td>
+                            <td>{{ historique.quantite }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let selects = document.getElementsByClassName("select");
+        for (var i = 0; i < selects.length; i++) {
+            selects[i].removeAttribute("multiple");
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{{ form_start(divers, {'method': 'POST', 'attr': {'class': 'form-horizontal row'}}) }}
+
+<div class="box-body col-sm-6">
+    <div class="form-group">
+        {{ form_label(divers.reference, null, {'label': 'Reference', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(divers.reference, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <!-- La table divers ne comprend pas (encore) de champ 'nom'
+    <div class="form-group">
+        {{ form_label(divers.reference, null, {'label': 'Nom', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(divers.reference, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>-->
+
+    <div class="form-group">
+        {{ form_label(divers.quantite, null, {'label': 'Quantite', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(divers.quantite, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(divers.couleur, null, {'label': 'Couleur', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(divers.couleur, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="box-body col-sm-6">
+    <div class="form-group">
+        {{ form_label(divers.format, null, {'label': 'Format', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(divers.format, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(divers.type, null, {'label': 'Type', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(divers.type, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="box-body col-sm-12">
+    <div class="form-group">
+        {{ form_label(divers.description, null, {'label': 'Description', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="col-sm-12">
+            {{ form_widget(divers.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="box-footer">
+    <div class="row">
+        <div class="btn-box col-sm-4 col-sm-offset-4">
+            <a href="{{ url("app_divers_index") }}" class="btn btn-default">{{ 'Annuler'|trans }}</a>
+        </div>
+        <div class="btn-box col-sm-4">
+            {{ form_widget(divers.submit, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
+        </div>
+    </div>
+</div>
+
+{{ form_end(divers) }}

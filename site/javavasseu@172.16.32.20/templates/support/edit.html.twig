@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>
+        {{ 'Informations'|trans }}
+    </h1>
+
+    <div class="col-sm-12">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="informations">
+                {{ include('support/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
