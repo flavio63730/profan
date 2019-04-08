@@ -6,6 +6,6 @@ ssh login@172.16.32.20
 login: sidaroukh
 mdp : celui de l'ent
 
-ssh projet1g@192.168.220.133
+ssh projet1h@192.168.220.133
 
-mdp : I2021projet1g
+mdp : I2021projet1h
