@@ -4,3 +4,13 @@ li.list-group-item strong {
 .hidden {
     display: none;
 }
+
+.div-titre-btn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.titre {
+    flex: 1;
+}

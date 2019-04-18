@@ -4,9 +4,13 @@
 
 {% block body %}
     <div class="box">
-        <div class="box-header">
-            <h1 class="box-title">Liste des supports</h1>
-            <a href="{{ path('app_support_new') }}" class="btn btn-primary top-btn">Créer un support</a>
+        <div class="box-header div-titre-btn">
+            <div class="titre">
+                <h1 class="box-title">Liste des supports</h1>
+            </div>
+            <div class="bouton">
+                <a href="{{ path('app_support_new') }}" class="btn btn-primary top-btn">Créer un support</a>
+            </div>
         </div>
         
         {{ include('support/_form_search.html.twig') }}
