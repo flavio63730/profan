@@ -2,14 +2,14 @@
 
 {% block body %}
     <h1>
-        Ajout Encre
+        {{ 'Ajout Item'|trans }}
     </h1>
 
     <div class="col-sm-12">
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="informations">
-                {{ include('liquide/_form.html.twig') }}
+                {{ include('item/_form.html.twig') }}
             </div>
         </div>
     </div>

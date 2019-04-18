@@ -1,0 +1,24 @@
+{{ form_start(form, {'method': 'POST', 'attr': {'class': 'form-horizontal row'}}) }}
+    <div class="form-group col-sm-3">
+        {{ form_label(form.reference, null, {'label': 'Reference', 'label_attr': {'class': 'control-label'}}) }}
+        {{ form_widget(form.reference, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group col-sm-3">
+        {{ form_label(form.designation, null, {'label': 'Designation', 'label_attr': {'class': 'control-label'}}) }}
+        {{ form_widget(form.designation, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group col-sm-3">
+        {{ form_label(form.quantite, null, {'label': 'Quantité min', 'label_attr': {'class': 'control-label'}}) }}
+        {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group col-sm-3">
+        {{ form_label(form.emplacement, null, {'label': 'Emplacement', 'label_attr': {'class': 'control-label'}}) }}
+        {{ form_widget(form.emplacement, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group col-sm-3">
+        <label class="control-label"><br></label>
+        {#
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary form-control'}, 'label': 'Rechercher'}) }}
+        #}
+    </div>
+{{ form_end(form) }}
