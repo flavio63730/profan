@@ -6,11 +6,15 @@ use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+
 
 /**
  * @Route("/user")
@@ -18,7 +22,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
+     * @param UserRepository $userRepository
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     *
      * @Route("/", name="app_user_index")
+     * @Method({"GET"})
      */
     public function index(UserRepository $userRepository)
     {
@@ -57,13 +68,17 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_user_edit")
      */
-    public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder, UserRepository $userRepository)
+    public function edit(Request $request, int $id, UserPasswordEncoderInterface $encoder, UserRepository $userRepository)
     {
+        $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find($id);
+        $password = $user->getPassword();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            if ( $password !== $user->getPassword() ) {
+                $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            }
 
             $this->getDoctrine()->getManager()->flush();
 

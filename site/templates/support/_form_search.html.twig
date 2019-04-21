@@ -1,7 +1,6 @@
 {{ form_start(form, {'method': 'POST', 'attr': {'class': 'form-horizontal row'}}) }}
     <div class="form-group col-sm-3">
-        {{ form_label(form.nom, null, {'label': 'Nom', 'label_attr': {'class': 'control-label'}}) }}
-        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
     </div>
     {# <div class="form-group col-sm-3">
         {{ form_label(form.reference, null, {'label': 'Reference', 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
@@ -10,34 +9,27 @@
         </div>
     </div> #}
     <div class="form-group col-sm-3">
-        {{ form_label(form.quantite, null, {'label': 'Quantité min', 'label_attr': {'class': 'control-label'}}) }}
-        {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.quantite, {'attr': {'class': 'form-control', 'placeholder': 'Quantité min'}}) }}
     </div>
     <div class="form-group col-sm-3">
-        {{ form_label(form.couleur, null, {'label': 'Couleur', 'label_attr': {'class': 'control-label'}}) }}
-        {{ form_widget(form.couleur, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.couleur, {'attr': {'class': 'form-control', 'placeholder': 'Couleur'}}) }}
     </div>
     <div class="form-group col-sm-3">
-        {{ form_label(form.format, null, {'label': 'Format', 'label_attr': {'class': 'control-label'}}) }}
-        {{ form_widget(form.format, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.format, {'attr': {'class': 'form-control', 'placeholder': 'Format'}}) }}
     </div>
 
     <div class="form-group col-sm-3">
-        {{ form_label(form.grammage, null, {'label': 'Grammage', 'label_attr': {'class': 'control-label'}}) }}
-        {{ form_widget(form.grammage, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.grammage, {'attr': {'class': 'form-control', 'placeholder': 'Grammage'}}) }}
     </div>
 
     <div class="form-group col-sm-3">
-        {{ form_label(form.materiel, null, {'label': 'Materiel', 'label_attr': {'class': 'control-label'}}) }}
-        {{ form_widget(form.materiel, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.materiel, {'attr': {'class': 'form-control', 'placeholder': 'Materiel'}}) }}
     </div>
     <div class="form-group col-sm-3">
-        {{ form_label(form.type, null, {'label': 'Type', 'label_attr': {'class': 'control-label'}}) }}
-        {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.type, {'attr': {'class': 'form-control', 'placeholder': 'Type'}}) }}
     </div>
 
     <div class="form-group col-sm-3">
-        <label class="control-label"><br></label>
-        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary form-control'}, 'label': 'Rechercher'}) }}
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-success form-control'}, 'label': 'Rechercher'}) }}
     </div>
 {{ form_end(form) }}
