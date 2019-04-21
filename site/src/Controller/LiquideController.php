@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/liquide")
@@ -20,16 +21,18 @@ class LiquideController extends AbstractController
 {
     /**
      * @param LiquideRepository $liquideRepository
+     * @param UserInterface     $user
      *
      * @return Response
      *
      * @Route("/", name="app_liquide_index")
      * @Method({"GET"})
      */
-    public function index(LiquideRepository $liquideRepository)
+    public function index(LiquideRepository $liquideRepository, UserInterface $user)
     {
         return $this->render('liquide/index.html.twig', [
             'liquides' => $liquideRepository->findAll(),
+            'isAdmin' => in_array('ROLE_ADMIN', $user->getRoles()),
         ]);
     }
 

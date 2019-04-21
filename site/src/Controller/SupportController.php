@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Support;
+use App\Entity\User;
 use App\Form\SupportType;
 use App\Form\SupportSearch;
 use App\Form\SupportSearchType;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/support")
@@ -23,19 +25,20 @@ class SupportController extends AbstractController
     /**
      * @param SupportRepository $supportRepository
      * @param Request           $request
+     * @param Userinterface     $user
      *
      * @return Response
      *
      * @Route("/", name="app_support_index")
      * @Method({"GET"})
      */
-    public function index(SupportRepository $supportRepository, Request $request)
+    public function index(SupportRepository $supportRepository, Request $request, UserInterface $user)
     {
         $supports = $supportRepository->findAll();
 
         $form = $this->createForm(SupportSearchType::class);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData();
 
@@ -63,6 +66,7 @@ class SupportController extends AbstractController
         return $this->render('support/index.html.twig', [
             'supports' => $supports,
             'form' => $form->createView(),
+            'isAdmin' => in_array('ROLE_ADMIN', $user->getRoles()),
         ]);
     }
 

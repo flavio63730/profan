@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/divers")
@@ -20,16 +21,19 @@ class DiversController extends AbstractController
 {
     /**
      * @param DiversRepository $diversRepository
+     * @param UserInterface    $user
      *
      * @return Response
      *
      * @Route("/", name="app_divers_index")
      * @Method({"GET"})
      */
-    public function index(DiversRepository $diversRepository)
+    public function index(DiversRepository $diversRepository, UserInterface $user)
     {
         return $this->render('divers/index.html.twig', [
             'diverss' => $diversRepository->findAll(),
+            'isAdmin' => in_array('ROLE_ADMIN', $user->getRoles()),
+
         ]);
     }
 

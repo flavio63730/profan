@@ -32,7 +32,9 @@
                             <a href="{{ path('app_divers_edit', { 'id': divers.id}) }}" class="btn btn-primary">
                                 <i class="fa fa-pencil-alt"></i>
                             </a>
-                            {{ include('divers/_delete.html.twig') }}
+                            {% if isAdmin %}
+                                {{ include('divers/_delete.html.twig') }}
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
