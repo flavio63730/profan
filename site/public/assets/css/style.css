@@ -14,3 +14,12 @@ li.list-group-item strong {
 .titre {
     flex: 1;
 }
+
+.form-control-label.required::after {
+    content: " *";
+    color: red;
+}
+
+.actions_form form {
+    margin-left: 5px;
+}

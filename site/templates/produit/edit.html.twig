@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>
+        {{ 'Informations'|trans }}
+    </h1>
+
+    <div class="col-sm-12">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="informations">
+                {{ form_start(produit, {'method': 'POST'}) }}
+                    {{ include('produit/_form.html.twig') }}
+
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="btn-box col-sm-4 col-sm-offset-4">
+                                <a href="{{ url("app_produit_index") }}" class="btn btn-secondary">{{ 'Annuler'|trans }}</a>
+                            </div>
+                            <div class="btn-box col-sm-4">
+                                {{ form_widget(produit.submit, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
+                            </div>
+                        </div>
+                    </div>
+                {{ form_end(produit) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

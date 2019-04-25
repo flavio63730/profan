@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190408174427 extends AbstractMigration
+final class Version20190425093122 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -26,8 +26,9 @@ final class Version20190408174427 extends AbstractMigration
         $this->addSql('CREATE TABLE emplacement (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE historique (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, support_id INT DEFAULT NULL, date DATETIME NOT NULL, action VARCHAR(255) NOT NULL, quantite INT NOT NULL, INDEX IDX_EDBFD5ECA76ED395 (user_id), INDEX IDX_EDBFD5EC315B405 (support_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE liquide (id INT AUTO_INCREMENT NOT NULL, reference VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, quantite INT NOT NULL, couleur VARCHAR(255) DEFAULT NULL, format VARCHAR(255) DEFAULT NULL, type VARCHAR(255) DEFAULT NULL, nom VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE produit (id INT AUTO_INCREMENT NOT NULL, reference VARCHAR(255) NOT NULL, designation VARCHAR(255) DEFAULT NULL, quantite INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE support (id INT AUTO_INCREMENT NOT NULL, reference VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, quantite INT NOT NULL, couleur VARCHAR(255) DEFAULT NULL, format VARCHAR(255) DEFAULT NULL, grammage INT DEFAULT NULL, materiel VARCHAR(255) DEFAULT NULL, type VARCHAR(255) DEFAULT NULL, nom VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE historique ADD CONSTRAINT FK_EDBFD5ECA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE historique ADD CONSTRAINT FK_EDBFD5EC315B405 FOREIGN KEY (support_id) REFERENCES support (id)');
     }
@@ -43,6 +44,7 @@ final class Version20190408174427 extends AbstractMigration
         $this->addSql('DROP TABLE emplacement');
         $this->addSql('DROP TABLE historique');
         $this->addSql('DROP TABLE liquide');
+        $this->addSql('DROP TABLE produit');
         $this->addSql('DROP TABLE support');
         $this->addSql('DROP TABLE user');
     }

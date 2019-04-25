@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+    <div class="box">
+        <div class="box-header div-titre-btn">
+            <div class="titre">
+                <h1 class="box-title">Liste des produits</h1>
+            </div>
+            <div class="bouton">
+                <a href="{{ path('app_produit_new') }}" class="btn btn-primary top-btn">Créer un produit</a>
+            </div>
+        </div>
+
+        <br>
+
+        {{ include('produit/_form_search.html.twig') }}
+
+        <div class="box-body">
+            <table class="table table-striped dataTable" role="grid">
+                <thead>
+                    <tr role="row">
+                        <th>Référence</th>
+                        <th>Désignation</th>
+                        <th>Quantité</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for produit in produits %}
+                    <tr role="row">
+                        <td>{{ produit.reference }}</td>
+                        <td>{{ produit.designation }}</td>
+                        <td>{{ produit.quantite }}</td>
+                        <td class="actions_form row">
+                            <a href="{{ path('app_produit_edit', { 'id': produit.id}) }}" class="btn btn-primary">
+                                <i class="fa fa-pencil-alt"></i>
+                            </a>
+                            {% if isAdmin %}
+                                {{ include('produit/_delete.html.twig') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
