@@ -19,9 +19,10 @@ class ProfanFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $admin = new User();
-        $admin->setEmail('admin@admin.fr');
+        $admin->setLogin('admin');
+        $admin->setEmail('admin@profan.fr');
         $admin->setPassword($this->encoder->encodePassword($admin, 'admin'));
-        $admin->setRoles(array('ROLE_ADMIN'));
+        $admin->setRoles(array('ROLE_ADMIN', 'ROLE_USER'));
         $manager->persist($admin);
     
         $manager->flush();

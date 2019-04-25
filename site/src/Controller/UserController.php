@@ -91,4 +91,24 @@ class UserController extends AbstractController
             'historiques' => $user->getHistoriques(),
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param User    $user
+     *
+     * @return Response
+     *
+     * @Route("/{id}/delete", name="app_user_delete")
+     * @Method({"DELETE"})
+     */
+    public function delete(Request $request, User $user)
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($user);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_user_index');
+    }
 }

@@ -27,4 +27,15 @@ class ProfanController extends AbstractController
             'historiques' => $historiqueRepository->findAll(),
         ]);
     }
+
+    /**
+     * @return Response
+     *
+     * @Route("/tutoriel", name="app_tutoriel_index")
+     * @Method({"GET"})
+     */
+    public function tutoriel()
+    {
+        return $this->render('tutoriel.html.twig');
+    }
 }

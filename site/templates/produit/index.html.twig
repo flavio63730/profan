@@ -8,9 +8,11 @@
             <div class="titre">
                 <h1 class="box-title">Liste des produits</h1>
             </div>
+            {% if isAdmin %}
             <div class="bouton">
                 <a href="{{ path('app_produit_new') }}" class="btn btn-primary top-btn">Créer un produit</a>
             </div>
+            {% endif %}
         </div>
 
         <br>
@@ -47,4 +49,12 @@
             </table>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $('.dataTable').DataTable();
+    </script>
 {% endblock %}

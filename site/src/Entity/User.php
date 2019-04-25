@@ -31,6 +31,11 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $login;
+
+    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -73,6 +78,18 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getLogin(): ?string
+    {
+        return $this->login;
+    }
+
+    public function setLogin(string $login): self
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -80,7 +97,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return $this->login;
     }
 
     /**

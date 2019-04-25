@@ -1,0 +1,38 @@
+<div class="box-body col-sm-6">        
+    <div class="form-group">
+        {{ form_label(user.login, null, {'label': 'Identifiant', 'label_attr': {'class': 'col-sm-12'}}) }}
+        <div class="col-sm-12">
+            {{ form_widget(user.login, {'attr': {'class': 'form-control', 'placeholder': 'Identifiant...'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(user.password, null, {'label': 'Mot de passe', 'label_attr': {'class': 'col-sm-12'}}) }}
+        <div class="col-sm-12">
+            {{ form_widget(user.password, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe...'}}) }}
+        </div>
+    </div>
+    
+    <div class="form-group">
+        {{ form_label(user.confirm_password, null, {'label': 'Confirmation de mot de passe', 'label_attr': {'class': 'col-sm-12'}}) }}
+        <div class="col-sm-12">
+            {{ form_widget(user.confirm_password, {'attr': {'class': 'form-control', 'placeholder': 'Répétez votre mot de passe'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="box-body col-sm-6">
+    <div class="form-group">
+        {{ form_label(user.email, null, {'label': 'Adresse mail', 'label_attr': {'class': 'col-sm-12'}}) }}
+        <div class="col-sm-12">
+            {{ form_widget(user.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse mail...'}}) }}
+        </div>
+    </div>
+    
+    <div class="form-group">
+        {{ form_label(user.roles, null, {'label': 'Roles', 'label_attr': {'class': 'col-sm-12'}}) }}
+        <div class="col-sm-12">
+            {{ form_widget(user.roles, {'attr': {'class': 'form-control select2'}}) }}
+        </div>
+    </div>
+</div>

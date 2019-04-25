@@ -14,12 +14,8 @@
 
                     <div class="box-footer">
                         <div class="row">
-                            <div class="btn-box col-sm-4 col-sm-offset-4">
-                                <a href="{{ url("app_produit_index") }}" class="btn btn-secondary">{{ 'Annuler'|trans }}</a>
-                            </div>
-                            <div class="btn-box col-sm-4">
-                                {{ form_widget(produit.submit, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
-                            </div>
+                            <a href="{{ url("app_produit_index") }}" class="btn btn-secondary">{{ 'Annuler'|trans }}</a>
+                            {{ form_widget(produit.submit, {'attr': {'class': 'btn btn-primary btn-box'}, 'label': 'Enregistrer'}) }}
                         </div>
                     </div>
                 {{ form_end(produit) }}

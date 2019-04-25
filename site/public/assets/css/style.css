@@ -1,6 +1,7 @@
 li.list-group-item strong {
     width: 100px;
 }
+
 .hidden {
     display: none;
 }
@@ -22,4 +23,34 @@ li.list-group-item strong {
 
 .actions_form form {
     margin-left: 5px;
+}
+
+table .fa {
+    font-size: 13px;
+}
+
+.image-container {
+    display: inline-block;
+}
+
+.image-container img {
+    width: 100%;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: left;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.dataTables_wrapper input,
+.dataTables_wrapper select {
+    width: max-content;
+    display: inline-block;
+    padding: 0!important;
+    height: auto;
+}
+
+.btn-box {
+    margin-left: 15px;
 }

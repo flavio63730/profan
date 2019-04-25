@@ -38,9 +38,9 @@ class Historique
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Support", inversedBy="historiques")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="historiques")
      */
-    private $support;
+    private $produit;
 
     public function getId(): ?int
     {
@@ -95,14 +95,14 @@ class Historique
         return $this;
     }
 
-    public function getSupport(): ?Support
+    public function getProduit(): ?Produit
     {
-        return $this->support;
+        return $this->produit;
     }
 
-    public function setSupport(?Support $support): self
+    public function setProduit(?Produit $produit): self
     {
-        $this->support = $support;
+        $this->produit = $produit;
 
         return $this;
     }

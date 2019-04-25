@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Entity\User;
+use App\Entity\Historique;
 use App\Form\ProduitType;
 use App\Form\ProduitSearchType;
 use App\Repository\ProduitRepository;
@@ -60,24 +61,35 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * @param Request       $request
+     * @param UserInterface $user
+     *
+     * @throws \Exception
      *
      * @return Response
      *
      * @Route("/create", name="app_produit_new")
      * @Method({"GET", "POST"})
      */
-    public function create(Request $request)
+    public function create(Request $request, UserInterface $user)
     {
         $form = $this->createForm(ProduitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $support = $form->getData();
+            $produit = $form->getData();
+
+            $historique = new Historique();
+            $historique->setDate(new \DateTime());
+            $historique->setAction("Création");
+            $historique->setQuantite($produit->getQuantite());
+            $historique->setUser($user);
+            $historique->setProduit($produit);
 
             $entityManager = $this->getDoctrine()->getManager();
 
-            $entityManager->persist($support);
+            $entityManager->persist($produit);
+            $entityManager->persist($historique);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_produit_index');
@@ -90,21 +102,39 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param Produit $produit
+     * @param Request       $request
+     * @param int           $id
+     * @param UserInterface $user
      *
      * @return Response
      *
      * @Route("/{id}/edit", name="app_produit_edit")
      * @Method({"GET", "POST"})
      */
-    public function edit(Request $request, Produit $produit)
-    {
+    public function edit(Request $request, int $id, UserInterface $user)
+    {        
+        $produit = $this->getDoctrine()->getManager()->getRepository(Produit::class)->find($id);
+        $old_quantity = $produit->getQuantite();
+
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $quantity_changed = $produit->getQuantite() - $old_quantity;
+            if ( $quantity_changed ) {
+                $historique = new Historique();
+                $historique->setDate(new \DateTime())
+                           ->setAction("Modification")
+                           ->setQuantite($quantity_changed)
+                           ->setUser($user)
+                           ->setProduit($produit);
+
+                $entityManager->persist($historique);
+            }
+
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_produit_index');
         }
