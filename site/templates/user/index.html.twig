@@ -29,7 +29,11 @@
                         <td>{{ user.email }}</td>
                         <td>
                             {% for role in user.roles %}
-                                [ {{ role }} ] 
+                                {% if role == 'ROLE_ADMIN'  %}
+                                    ADMIN
+                                {% elseif role == 'ROLE_ETUDIANT'  %}
+                                    ETUDIANT
+                                {% endif %}
                             {% endfor %}
                         </td>
                         <td class="actions_form row">

@@ -45,11 +45,18 @@ class ProduitController extends AbstractController
                 'designation' => strtoupper($search->getDesignation()),
                 'quantite' => $search->getQuantite(),
             ];
-            for ($i=0; $i < sizeof($produits); ++$i ) {
-                if (   ($values['reference']   && strpos(strtoupper($produits[$i]->getReference()),   $values['reference'])   === false )
-                    || ($values['designation'] && strpos(strtoupper($produits[$i]->getDesignation()), $values['designation']) === false )
-                    || ($values['quantite'] && $produits[$i]->getQuantite() >= $values['quantite'] === false) )
+
+            $size = count($produits);
+            for ($i=0; $i < $size ; ++$i ) {
+                if ($values['reference'] && (strpos(strtoupper($produits[$i]->getReference()), $values['reference']) === false) ) {
                     unset($produits[$i]);
+                }
+                else if ($values['designation'] && (strpos(strtoupper($produits[$i]->getDesignation()), $values['designation']) === false) ) {
+                    unset($produits[$i]);
+                }
+                else if ($values['quantite'] && $produits[$i]->getQuantite() >= $values['quantite'] ) {
+                    unset($produits[$i]);
+                }
             }
         }
 

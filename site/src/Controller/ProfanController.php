@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\HistoriqueRepository;
+use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -15,16 +16,18 @@ class ProfanController extends AbstractController
 {
     /**
      * @param HistoriqueRepository $historiqueRepository
+     * @param ProduitRepository    $produitRepository
      *
      * @return Response
      *
      * @Route("/", name="home")
      * @Method({"GET"})
      */
-    public function home(HistoriqueRepository $historiqueRepository)
+    public function home(HistoriqueRepository $historiqueRepository, ProduitRepository $produitRepository)
     {
         return $this->render('home.html.twig', [
             'historiques' => $historiqueRepository->findAll(),
+            'produits' => $produitRepository->findAll(),
         ]);
     }
 

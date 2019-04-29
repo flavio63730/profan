@@ -69,7 +69,14 @@
     <script type="text/javascript">
         $('.dataTable').DataTable();
 
+        var info = [
+            ['Produit', 'Quantite'],
+            {% for produit in produits %}
+                ['{{ produit.designation }}', {{ produit.quantite }}],
+            {% endfor %}
+        ];
+
         google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(function() { drawChart(info); });
     </script>
 {% endblock %}

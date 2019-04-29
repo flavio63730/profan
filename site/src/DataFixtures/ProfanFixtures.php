@@ -22,7 +22,7 @@ class ProfanFixtures extends Fixture
         $admin->setLogin('admin');
         $admin->setEmail('admin@profan.fr');
         $admin->setPassword($this->encoder->encodePassword($admin, 'admin'));
-        $admin->setRoles(array('ROLE_ADMIN', 'ROLE_USER'));
+        $admin->setRoles(array('ROLE_ADMIN'));
         $manager->persist($admin);
     
         $manager->flush();
