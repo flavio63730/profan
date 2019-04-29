@@ -75,12 +75,15 @@ class ProduitController extends AbstractController
      *
      * @return Response
      *
-     * @Route("/create", name="app_produit_new")
+     * @Route("/create/{reference}", defaults={"reference"=""}, name="app_produit_new")
      * @Method({"GET", "POST"})
      */
-    public function create(Request $request, UserInterface $user)
+    public function create(Request $request, UserInterface $user, $reference)
     {
-        $form = $this->createForm(ProduitType::class);
+        $produit = new Produit();
+        $produit->setReference($reference);
+
+        $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -121,6 +124,8 @@ class ProduitController extends AbstractController
     public function edit(Request $request, int $id, UserInterface $user)
     {        
         $produit = $this->getDoctrine()->getManager()->getRepository(Produit::class)->find($id);
+        $old_reference = $produit->getReference();
+        $old_designation = $produit->getDesignation();
         $old_quantity = $produit->getQuantite();
 
         $form = $this->createForm(ProduitType::class, $produit);
@@ -128,6 +133,11 @@ class ProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            if ( ! in_array('ROLE_ADMIN', $user->getRoles()) ) {
+                $produit->setReference($old_reference);
+                $produit->setDesignation($old_designation);
+            }
 
             $quantity_changed = $produit->getQuantite() - $old_quantity;
             if ( $quantity_changed ) {

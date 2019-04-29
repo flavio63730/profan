@@ -2,18 +2,49 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
+use App\Repository\ProduitRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @Route("/scan")
+ */
 class ScanController extends AbstractController
 {
     /**
-     * @Route("/scan", name="scan")
+     * @Route("/", name="app_scan_index")
      */
     public function index()
     {
-        return $this->render('scan/index.html.twig', [
-            'controller_name' => 'ScanController',
-        ]);
+        return $this->render('scan/index.html.twig');
+    }
+    /**
+     * @param ProduitRepository $produitRepository
+     * @param UserInterface     $user
+     * @param string            $reference
+     *
+     * @Route("/{reference}", name="app_scan_search")
+     * @Method({"GET"})
+     */
+    public function search(ProduitRepository $produitRepository, UserInterface $user, string $reference)
+    {
+        $produits = $produitRepository->findAll();
+        $id = 0;
+        foreach ($produits as $produit) {
+            if ( $produit->getReference() == $reference ) {
+                $id = $produit->getId();
+                break;
+            }
+        }
+
+        if ( $id )
+            return $this->redirectToRoute('app_produit_edit', ['id' => $id]);
+        else
+            return $this->redirectToRoute('app_produit_new', ['reference' => $reference]);
     }
 }

@@ -5,17 +5,18 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Gestion des Stocks{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" href="{{ asset('assets/css/flatly_bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/datatable.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
 
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ path('home') }}">Profan</a>
+            {{ include('scan/index.html.twig') }}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,7 +44,6 @@
                     {% endif %}
                 </ul>
             </div>
-            <a class="btn btn-primary" href="{{ path('scan') }}">Scan</a>
         </nav>
 
         <div class="container">
@@ -56,6 +56,18 @@
             <script src="{{ asset('assets/js/datatable.min.js') }}"></script>
             <script src="{{ asset('assets/js/select2.min.js') }}"></script>
             <script src="{{ asset('assets/js/script.js') }}"></script>
+
+            <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
+            <script src="{{ asset('assets/js/camera.js') }}"></script>
+            <script>
+                Quagga.onDetected(function(result) {
+                    if (result.codeResult.code){
+                        Quagga.stop();
+                        setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
+                        window.location.href = '/scan/' + result.codeResult.code;
+                    }
+                });
+            </script>
         {% endblock %}
     </body>
 </html>
