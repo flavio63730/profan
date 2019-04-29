@@ -47,6 +47,7 @@
                 </ul>
             </div>
 
+            {% if is_granted('ROLE_ADMIN') %}
             <ul class="nav nav-pills">
                 <li class="nav-item dropdown">
                     <a class="btn btn-primary top-btn nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ajouter Item</a>
@@ -58,6 +59,7 @@
                     </div>
                 </li>
             </ul>
+            {% endif %}
         </nav>
 
         <div class="container">
