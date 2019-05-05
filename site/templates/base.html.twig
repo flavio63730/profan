@@ -27,7 +27,7 @@
                         <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                     </li>
                     <li class="nav-item {% if 'produit' in link %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('app_produit_index') }}">Produits</a>
+                        <a class="nav-link" href="{{ path('app_produit_index') }}">Stock</a>
                     </li>
                     <li class="nav-item {% if 'tutoriel' in link %}active{% endif %}">
                         <a class="nav-link" href="{{ path('app_tutoriel_index') }}">Tutoriel</a>
@@ -56,7 +56,6 @@
             <script src="{{ asset('assets/js/datatable.min.js') }}"></script>
             <script src="{{ asset('assets/js/select2.min.js') }}"></script>
             <script src="{{ asset('assets/js/script.js') }}"></script>
-
             <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
             <script src="{{ asset('assets/js/camera.js') }}"></script>
             <script>

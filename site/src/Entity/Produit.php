@@ -29,7 +29,7 @@ class Produit
     private $designation;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $quantite;
 
