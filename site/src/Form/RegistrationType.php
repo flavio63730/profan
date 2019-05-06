@@ -25,6 +25,7 @@ class RegistrationType extends AbstractType
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'ETUDIANT' => 'ROLE_ETUDIANT',
+                    'PROFESSEUR' => 'ROLE_PROF',
                     'ADMIN' => 'ROLE_ADMIN',
                 ],
                 'expanded' => false,

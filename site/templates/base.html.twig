@@ -5,6 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Gestion des Stocks{% endblock %}</title>
+        <link rel="SHORTCUT ICON" href="{{ asset('assets/images/profanfavicon.jpg') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/flatly_bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/datatable.min.css') }}">
@@ -32,7 +33,7 @@
                     <li class="nav-item {% if 'tutoriel' in link %}active{% endif %}">
                         <a class="nav-link" href="{{ path('app_tutoriel_index') }}">Tutoriel</a>
                     </li>
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF') %}
                     <li class="nav-item {% if 'user' in link %}active{% endif %}">
                         <a class="nav-link" href="{{ path('app_user_index') }}">Utilisateurs</a>
                     </li>

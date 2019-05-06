@@ -1,6 +1,6 @@
 <div class="form-group">
     {{ form_label(produit.reference, null, {'label': 'Référence', 'label_attr': {'class': 'form-control-label'}}) }}
-    {% if is_granted('ROLE_ADMIN') %}    
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF') %}
         {{ form_widget(produit.reference, {'attr': {'class': 'form-control'}}) }}
     {% else %}
         {{ form_widget(produit.reference, {'attr': {'class': 'form-control disabled'}}) }}
@@ -9,7 +9,7 @@
 
 <div class="form-group">
     {{ form_label(produit.designation, null, {'label': 'Designation', 'label_attr': {'class': 'form-control-label'}}) }}
-    {% if is_granted('ROLE_ADMIN') %}    
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF') %}
         {{ form_widget(produit.designation, {'attr': {'class': 'form-control'}}) }}
     {% else %}
         {{ form_widget(produit.designation, {'attr': {'class': 'form-control disabled'}}) }}

@@ -43,11 +43,14 @@ class UserController extends AbstractController
      */
     public function create(Request $request, UserPasswordEncoderInterface $encoder)
     {
-        $form = $this->createForm(RegistrationType::class);
+        $user = new User();
+        $user->setRoles(['ROLE_ETUDIANT']);
+        $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+
 
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 

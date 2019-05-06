@@ -32,7 +32,13 @@
     <div class="form-group">
         {{ form_label(user.roles, null, {'label': 'Roles', 'label_attr': {'class': 'col-sm-12'}}) }}
         <div class="col-sm-12">
-            {{ form_widget(user.roles, {'attr': {'class': 'form-control select'}}) }}
+            {% if is_granted('ROLE_ADMIN') %}
+                {{ form_widget(user.roles, {'attr': {'class': 'form-control select'}}) }}
+            {% else %}
+                {{ form_widget(user.roles, {'attr': {'class': 'form-control select disabled'}}) }}
+            {% endif %}
+
         </div>
+
     </div>
 </div>

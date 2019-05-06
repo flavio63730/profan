@@ -33,6 +33,8 @@
                                     ADMIN
                                 {% elseif role == 'ROLE_ETUDIANT'  %}
                                     ETUDIANT
+                                {% elseif role == 'ROLE_PROF'  %}
+                                    PROFESSEUR
                                 {% endif %}
                             {% endfor %}
                         </td>
