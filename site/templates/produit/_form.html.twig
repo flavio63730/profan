@@ -20,3 +20,9 @@
     {{ form_label(produit.quantite, null, {'label': 'Quantité', 'label_attr': {'class': 'form-control-label'}}) }}
     {{ form_widget(produit.quantite, {'attr': {'class': 'form-control'}}) }}
 </div>
+
+
+<div class="form-group">
+    {{ form_label(produit.emplacements, null, {'label': 'Emplacements', 'label_attr': {'class': 'col-sm-12'}}) }}
+    {{ form_widget(produit.emplacements, {'attr': {'class': 'form-control select2'}}) }}
+</div>

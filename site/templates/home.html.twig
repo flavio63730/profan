@@ -23,7 +23,7 @@
                         <td>{{ historique.user.login }}</td>
                         <td>{{ historique.produit.reference }}</td>
                         <td>{{ historique.action }}</td>
-                        <td>{% if 0 < historique.quantite %}+{% endif %}</span>{{ historique.quantite }}
+                        <td>{% if 0 < historique.quantite %}+{% endif %}{{ historique.quantite }}
                         </td>
                     </tr>
                 {% endfor %}
@@ -35,7 +35,7 @@
     <hr>
 
     <div class="teststat">
-        <div id="chart_div" style="width: 900px; height: 500px;"></div>
+        <div id="chart_div"></div>
     </div>
     
     <hr>

@@ -26,6 +26,7 @@
                         <th>Référence</th>
                         <th>Désignation</th>
                         <th>Quantité</th>
+                        <th>Emplacements</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -35,6 +36,13 @@
                         <td>{{ produit.reference }}</td>
                         <td>{{ produit.designation }}</td>
                         <td>{{ produit.quantite }}</td>
+                        <td>
+                            <ul class="list-group">
+                                {% for emplacement in produit.emplacements %}
+                                    <li>{{ emplacement }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
                         <td class="actions_form row">
                             <a href="{{ path('app_produit_edit', { 'id': produit.id}) }}" class="btn btn-primary">
                                 <i class="fa fa-pencil-alt"></i>

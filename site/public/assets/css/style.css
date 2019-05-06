@@ -21,6 +21,10 @@ li.list-group-item strong {
     color: red;
 }
 
+.list-group {
+    list-style: none;
+}
+
 .actions_form form {
     margin-left: 5px;
 }

@@ -38,6 +38,11 @@ class Produit
      */
     private $historiques;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $emplacements = [];
+
     public function __construct()
     {
         $this->historiques = new ArrayCollection();
@@ -111,6 +116,18 @@ class Produit
                 $historique->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmplacements(): ?array
+    {
+        return $this->emplacements;
+    }
+
+    public function setEmplacements(?array $emplacements): self
+    {
+        $this->emplacements = $emplacements;
 
         return $this;
     }
