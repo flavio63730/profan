@@ -49,3 +49,12 @@
         </div>
     </div>
 {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $('.dataTable').DataTable();
+    </script>
+{% endblock %}
