@@ -43,8 +43,14 @@ class ScanController extends AbstractController
         }
 
         if ( $id )
-            return $this->redirectToRoute('app_produit_edit', ['id' => $id]);
-        else
-            return $this->redirectToRoute('app_produit_new', ['reference' => $reference]);
+            $page = $this->redirectToRoute('app_produit_edit', ['id' => $id]);
+        else if ( in_array('ROLE_ADMIN', $user->getRoles()) )
+            $page = $this->redirectToRoute('app_produit_new', ['reference' => $reference]);
+        else {
+            $page = $this->redirectToRoute('app_produit_index');
+            $this->addFlash('danger', 'Produit inexistant.');
+        }
+        
+        return $page;
     }
 }
