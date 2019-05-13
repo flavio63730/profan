@@ -11,3 +11,7 @@ function drawChart(info) {
     var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
     chart.draw(data, options);
 }
+
+setTimeout(function() {
+    $( '#flash-message' ).fadeOut();
+}, 5000);
