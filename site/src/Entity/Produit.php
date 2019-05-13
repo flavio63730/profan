@@ -34,7 +34,7 @@ class Produit
     private $quantite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Historique", mappedBy="support")
+     * @ORM\OneToMany(targetEntity="App\Entity\Historique", mappedBy="produit", cascade="remove")
      */
     private $historiques;
 
