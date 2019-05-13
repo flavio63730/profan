@@ -23,6 +23,7 @@ class UserController extends AbstractController
 {
     /**
      * @param UserRepository $userRepository
+     * @param UserInterface $user
      *
      * @throws \Exception
      *
@@ -31,10 +32,11 @@ class UserController extends AbstractController
      * @Route("/", name="app_user_index")
      * @Method({"GET"})
      */
-    public function index(UserRepository $userRepository)
+    public function index(UserRepository $userRepository, UserInterface $user)
     {
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+            'isAdmin' => in_array('ROLE_ADMIN', $user->getRoles()),
         ]);
     }
 

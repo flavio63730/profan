@@ -38,11 +38,15 @@
                                 {% endif %}
                             {% endfor %}
                         </td>
-                        <td class="actions_form row">
-                            <a href="{{ path('app_user_edit', { 'id': user.id}) }}" class="btn btn-primary">
-                                <i class="fa fa-pencil-alt"></i>
-                            </a>
-                            {{ include('user/_delete.html.twig') }}
+                        <td class="actions_form">
+                            {% if isAdmin or 'ROLE_ETUDIANT' in user.roles or user.login == app.user.login %}
+                                <a href="{{ path('app_user_edit', { 'id': user.id}) }}" class="btn btn-primary">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
+                                {% if user.login != app.user.login %}
+                                    {{ include('user/_delete.html.twig') }}
+                                {% endif %}
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

@@ -24,7 +24,10 @@ li.list-group-item strong {
 .list-group {
     list-style: none;
 }
-
+.actions_form {
+    display: flex;
+    justify-content: center;
+}
 .actions_form form {
     margin-left: 5px;
 }
