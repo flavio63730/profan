@@ -28,10 +28,12 @@ class ScanController extends AbstractController
      * @param UserInterface     $user
      * @param string            $reference
      *
+     * @return Response
+     *
      * @Route("/{reference}", name="app_scan_search")
      * @Method({"GET"})
      */
-    public function search(ProduitRepository $produitRepository, UserInterface $user, string $reference)
+    public function search(ProduitRepository $produitRepository, UserInterface $user, string $reference = "")
     {
         $produits = $produitRepository->findAll();
         $id = 0;

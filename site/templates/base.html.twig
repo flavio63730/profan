@@ -1,11 +1,11 @@
 {% set link = app.request.get('_route') %}
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Gestion des Stocks{% endblock %}</title>
-        <link rel="SHORTCUT ICON" href="{{ asset('assets/images/profanfavicon.jpg') }}">
+        <link rel="icon" href="{{ asset('assets/images/profanfavicon.jpg') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/flatly_bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/datatable.min.css') }}">
@@ -64,7 +64,8 @@
                     if (result.codeResult.code){
                         Quagga.stop();
                         setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
-                        window.location.href = '/scan/' + result.codeResult.code;
+                        //window.location.href = url('app_scan_search') + result.codeResult.code;
+                        console.log("{{ path('app_scan_search') }}" + result.codeResult.code);
                     }
                 });
             </script>
