@@ -26,19 +26,19 @@ class ScanController extends AbstractController
     /**
      * @param ProduitRepository $produitRepository
      * @param UserInterface     $user
-     * @param string            $reference
+     * @param string            $code
      *
      * @return Response
      *
-     * @Route("/{reference}", name="app_scan_search")
+     * @Route("/{code}", name="app_scan_search")
      * @Method({"GET"})
      */
-    public function search(ProduitRepository $produitRepository, UserInterface $user, string $reference = "")
+    public function search(ProduitRepository $produitRepository, UserInterface $user, string $code = "")
     {
         $produits = $produitRepository->findAll();
         $id = 0;
         foreach ($produits as $produit) {
-            if ( $produit->getReference() == $reference ) {
+            if ( $produit->getCode() == $code ) {
                 $id = $produit->getId();
                 break;
             }
@@ -47,7 +47,7 @@ class ScanController extends AbstractController
         if ( $id )
             $page = $this->redirectToRoute('app_produit_edit', ['id' => $id]);
         else if ( in_array('ROLE_ADMIN', $user->getRoles()) )
-            $page = $this->redirectToRoute('app_produit_new', ['reference' => $reference]);
+            $page = $this->redirectToRoute('app_produit_new', ['code' => $code]);
         else {
             $page = $this->redirectToRoute('app_produit_index');
             $this->addFlash('danger', 'Produit inexistant.');

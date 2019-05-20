@@ -70,18 +70,19 @@ class ProduitController extends AbstractController
     /**
      * @param Request       $request
      * @param UserInterface $user
+     * @param string        $code
      *
      * @throws \Exception
      *
      * @return Response
      *
-     * @Route("/create/{reference}", defaults={"reference"=""}, name="app_produit_new")
+     * @Route("/create/{code}", defaults={"code"=""}, name="app_produit_new")
      * @Method({"GET", "POST"})
      */
-    public function create(Request $request, UserInterface $user, $reference)
+    public function create(Request $request, UserInterface $user, string $code)
     {
         $produit = new Produit();
-        $produit->setReference($reference);
+        $produit->setCode($code);
 
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);

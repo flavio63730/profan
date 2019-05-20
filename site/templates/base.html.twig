@@ -76,8 +76,7 @@
                     if (result.codeResult.code){
                         Quagga.stop();
                         setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
-                        //window.location.href = url('app_scan_search') + result.codeResult.code;
-                        console.log("{{ path('app_scan_search') }}" + result.codeResult.code);
+                        window.location.href = "{{ url('app_scan_search') }}/" + result.codeResult.code;
                     }
                 });
             </script>
