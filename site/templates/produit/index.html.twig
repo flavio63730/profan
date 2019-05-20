@@ -24,6 +24,7 @@
                 <thead>
                     <tr role="row">
                         <th>Référence</th>
+                        <th>Code barre</th>
                         <th>Désignation</th>
                         <th>Quantité</th>
                         <th>Emplacements</th>
@@ -34,6 +35,7 @@
                 {% for produit in produits %}
                     <tr role="row">
                         <td>{{ produit.reference }}</td>
+                        <td>{{ produit.code }}</td>
                         <td>{{ produit.designation }}</td>
                         <td>{{ produit.quantite }}</td>
                         <td>

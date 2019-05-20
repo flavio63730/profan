@@ -19,6 +19,9 @@ class ProduitType extends AbstractType
             ->add('reference', TextType::class, [
                 'required' => true,
             ])
+            ->add('code', TextType::class, [
+                'required' => false,
+            ])
             ->add('designation', TextType::class, [
                 'required' => false,
             ])

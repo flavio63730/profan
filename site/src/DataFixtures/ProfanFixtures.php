@@ -149,11 +149,11 @@ class ProfanFixtures extends Fixture
         $admin->setRoles(array('ROLE_ADMIN'));
         $manager->persist($admin);
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < sizeof($products); $i++) {
             $produit = new Produit();
-            $produit->setReference('produit '.$i);
-            $produit->setDesignation(str_shuffle('abcdefghi'));
-            $produit->setQuantite(mt_rand(10, 100));
+            $produit->setReference($products[$i][0]);
+            $produit->setDesignation($products[$i][1]);
+            $produit->setQuantite(0);
             $manager->persist($produit);
         }
     

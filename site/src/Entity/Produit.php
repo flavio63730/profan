@@ -26,6 +26,11 @@ class Produit
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $code;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $designation;
 
     /**
@@ -61,6 +66,18 @@ class Produit
     public function setReference(string $reference): self
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(?string $code): self
+    {
+        $this->code = $code;
 
         return $this;
     }
