@@ -1,7 +1,7 @@
 scp -r /mnt/c/Users/jaelv/Documents/GitHub/profan/site javavasseu@172.16.32.20:~
 
 
-ssh login@172.16.32.20
+ssh javavasseu@172.16.32.20
 
 login: javavasseu
 mdp : celui de l'ent
